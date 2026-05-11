@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabita | Wellness Studio</title>
+    <style>
+        :root { 
+            --primary: #10b981; 
+            --secondary: #6366f1; 
+            --light: #d1fae5;
+            --dark: #047857;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdfa, #ecfeff);
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            font-size: 2.2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.3"/><path d="M0 50 Q 25 30, 50 50 T 100 50" stroke="%2310b981" stroke-width="1" fill="none"/></svg>') bottom no-repeat,
+                      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.3"/><path d="M0 50 Q 25 70, 50 50 T 100 50" stroke="%236366f1" stroke-width="1" fill="none"/></svg>') top no-repeat;
+            background-size: cover;
+        }
+        .hero-content {
+            max-width: 600px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #475569;
+        }
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .class-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .class-header {
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+        .class-content {
+            padding: 1.8rem;
+        }
+        .class-time {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .booking {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+        .secondary-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .testimonials {
+            background: linear-gradient(120deg, #f0fdfa, #e0f2fe);
+            padding: 4rem 10%;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 5rem;
+            color: var(--light);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .testimonial-content {
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon">🧘</span>
+            <span>Kabita Wellness</span>
+        </div>
+        <div class="nav-links">
+            <a href="#classes">Classes</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Balance in Every Breath</h1>
+            <p>Join our community of mindful practitioners and discover the transformative power of yoga and meditation in a serene environment designed for your wellness journey.</p>
+            <button class="primary-btn" onclick="showClassModal()">Explore Classes</button>
+        </div>
+    </section>
+
+    <section class="schedule" id="classes">
+        <div class="class-card">
+            <div class="class-header">🌅</div>
+            <div class="class-content">
+                <span class="class-time">Mon/Wed/Fri • 7:00 AM</span>
+                <h2>Early Sunrise Flow</h2>
+                <p>Gentle vinyasa to awaken your body and mind with the rising sun. Perfect for starting your day with intention.</p>
+                <div class="booking">
+                    <button class="primary-btn" data-class="sunrise">Book Now</button>
+                    <button class="secondary-btn">Details</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="class-card">
+            <div class="class-header">🌙</div>
+            <div class="class-content">
+                <span class="class-time">Tue/Thu • 7:30 PM</span>
+                <h2>Moonlight Meditation</h2>
+                <p>Restorative yoga and guided meditation to release daily stress and prepare for deep, restful sleep.</p>
+                <div class="booking">
+                    <button class="primary-btn" data-class="moonlight">Book Now</button>
+                    <button class="secondary-btn">Details</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="class-card">
+            <div class="class-header">🌿</div>
+            <div class="class-content">
+                <span class="class-time">Sat • 9:00 AM</span>
+                <h2>Weekend Renewal</h2>
+                <p>Extended 90-minute session combining hatha yoga, breathwork, and mindfulness practices for holistic renewal.</p>
+                <div class="booking">
+                    <button class="primary-btn" data-class="renewal">Book Now</button>
+                    <button class="secondary-btn">Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; color: var(--dark);">Student Journeys</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="testimonial-content">"Kabita's guidance transformed my relationship with my body. After 6 months of consistent practice, my chronic back pain has disappeared and I feel more present than ever."</p>
+                <strong>- Priya Sharma</strong>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-content">"The moonlight meditation class is my sanctuary. Kabita creates such a safe space for emotional release and inner peace. I leave each session feeling renewed."</p>
+                <strong>- Rohan Mehta</strong>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>📍 Studio Location: 123 Serenity Lane, Wellness City</p>
+        <p>📞 Contact: +91 98765 43210 | ✉️ hello@kabitawellness.com</p>
+        <p>&copy; 2026 Kabita Wellness Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Class booking system
+        document.querySelectorAll('[data-class]').forEach(button => {
+            button.addEventListener('click', function() {
+                const className = this.getAttribute('data-class');
+                const classes = {
+                    'sunrise': 'Early Sunrise Flow',
+                    'moonlight': 'Moonlight Meditation',
+                    'renewal': 'Weekend Renewal'
+                };
+                
+                alert(`Booking confirmed for ${classes[className]}!\nCheck your email for confirmation and preparation details.`);
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Floating animation for class icons
+        document.addEventListener('DOMContentLoaded', function() {
+            const classHeaders = document.querySelectorAll('.class-header');
+            
+            classHeaders.forEach(header => {
+                let posX = 0;
+                let posY = 0;
+                const speed = 0.05;
+                
+                header.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    posX = (e.clientX - rect.left) / rect.width - 0.5;
+                    posY = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${posY * 10}deg) rotateY(${-posX * 10}deg)`;
+                });
+                
+                header.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+            
+            // Breathing animation for logo
+            const logoIcon = document.querySelector('.logo-icon');
+            let scale = 1;
+            let direction = 1;
+            
+            function breathe() {
+                scale += 0.005 * direction;
+                if(scale > 1.05 || scale < 0.95) direction *= -1;
+                logoIcon.style.transform = `scale(${scale})`;
+                requestAnimationFrame(breathe);
+            }
+            
+            breathe();
+        });
+
+        function showClassModal() {
+            const classes = [
+                'Early Sunrise Flow (Mon/Wed/Fri 7AM)',
+                'Moonlight Meditation (Tue/Thu 7:30PM)',
+                'Weekend Renewal (Sat 9AM)'
+            ];
+            
+            alert(`Available Classes:\n\n${classes.join('\n')}\n\nTap any class card for details and booking!`);
+        }
+    </script>
+</body>
+</html>
